@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>受付フォーム</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin: 0;
+    }
+    .title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #06C755;
+    }
+    .sub {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: #06C755;
+      color: white;
+      font-weight: bold;
+    }
+    .hidden {
+      display: none;
+    }
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="formPage">
+  <h2>セミナー受付フォーム</h2>
+  <p>本日はご参加ありがとうございます。</p>
+
+  <form id="form">
+    <label>氏名（ニックネーム可・空白でもOK）</label>
+    <input type="text" name="name">
+
+    <label>お住まいの地区（選択しなくてもOK）</label>
+    <select name="area">
+      <option value="">選択してください</option>
+      <option>三日市</option>
+      <option>石田</option>
+      <option>田家</option>
+      <option>村椿</option>
+      <option>大布施</option>
+      <option>前沢</option>
+      <option>荻生</option>
+      <option>若栗</option>
+      <option>東布施</option>
+      <option>生地</option>
+      <option>宇奈月</option>
+      <option>市外</option>
+    </select>
+
+    <label>会社・団体名など（任意・空白でもOK）</label>
+    <input type="text" name="company">
+
+    <div class="note">
+      ※すべて任意・空欄でもOKです
+    </div>
+
+    <button type="submit">受付を完了する</button>
+  </form>
+</div>
+
+<div class="container hidden center" id="thanksPage">
+<h2 class="title">受付完了 🎉</h2>
+<p class="sub">ご協力ありがとうございました！</p>
+<br>
+<p>
+    本日のゲストスピーカー<br>
+    <B>"上坂のぶひろ"</B>の<br>
+    活動や発信にご興味のある方は<br>
+    <br>
+    ぜひ、公式LINEの友だち登録を<br>
+    ＼お願いします／👇
+  </p>
+
+  <a href="https://lin.ee/pxJmXlF" target="_blank">
+    <button>公式LINEに登録する</button>
+  </a>
+
+</div>
+
+<script>
+  const form = document.getElementById('form');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  fetch('https://script.google.com/macros/s/AKfycbw3PZjsBCgGKQHMluSfPowWVdf_sJ1QPeCdhFgGp1khOKGa2uc6T32yY8rrYXH9yutMSA/exec', {
+    method: 'POST',
+    body: new FormData(form)
+  });
+
+  document.getElementById('formPage').classList.add('hidden');
+  document.getElementById('thanksPage').classList.remove('hidden');
+});
+</script>
+
+</body>
+</html>
